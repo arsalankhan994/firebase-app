@@ -13,7 +13,8 @@
             app:popUpTo="@id/welcomeFragment"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_registrationFragment_pop_including_loginFragment" />
+            android:id="@+id/action_registrationFragment_to_loginFragment"
+            app:destination="@id/loginFragment"/>
     </fragment>
     <fragment
         android:id="@+id/loginFragment"

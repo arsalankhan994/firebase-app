@@ -44,7 +44,7 @@ class RegistrationFragment: Fragment() {
         }
 
         binding.signIn.setOnClickListener {
-            findNavController().navigate(RegistrationFragmentDirections.actionRegistrationFragmentPopIncludingLoginFragment())
+            findNavController().navigate(RegistrationFragmentDirections.actionRegistrationFragmentToLoginFragment())
         }
 
         val callback: OnBackPressedCallback =
