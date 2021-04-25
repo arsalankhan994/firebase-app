@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.app.mobileapptask.databinding.WelcomeFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,10 +29,9 @@ class WelcomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.listButton.setOnClickListener {
-            // navigate to task fragment
+            findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToTaskListFragment())
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

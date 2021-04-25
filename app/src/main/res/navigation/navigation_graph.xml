@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation_graph"
     app:startDestination="@id/loginFragment">
 
@@ -7,13 +8,13 @@
         android:id="@+id/registrationFragment"
         android:name="com.app.mobileapptask.ui.fragment.register.RegistrationFragment">
         <action
-            app:launchSingleTop="true"
             android:id="@+id/action_registrationFragment_to_welcomeFragment"
-            app:destination="@id/welcomeFragment" />
+            app:destination="@id/welcomeFragment"
+            app:popUpTo="@id/welcomeFragment"
+            app:popUpToInclusive="true" />
         <action
-            app:launchSingleTop="true"
             android:id="@+id/action_registrationFragment_pop_including_loginFragment"
-            app:popUpToInclusive="true"
+            app:popUpToInclusive="false"
             app:popUpTo="@id/loginFragment"/>
     </fragment>
     <fragment
@@ -25,7 +26,8 @@
         <action
             android:id="@+id/action_loginFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment"
-            app:launchSingleTop="true"/>
+            app:popUpTo="@id/welcomeFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
@@ -33,7 +35,8 @@
         <action
             android:id="@+id/action_welcomeFragment_to_taskListFragment"
             app:destination="@id/taskListFragment"
-            app:launchSingleTop="true"/>
+            app:popUpToInclusive="false"
+            app:popUpTo="@id/taskListFragment"/>
     </fragment>
     <fragment
         android:id="@+id/taskListFragment"
@@ -41,8 +44,7 @@
         android:label="TaskListFragment" >
         <action
             android:id="@+id/action_taskListFragment_to_profileFragment"
-            app:destination="@id/profileFragment"
-            app:launchSingleTop="true"/>
+            app:destination="@id/profileFragment"/>
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
