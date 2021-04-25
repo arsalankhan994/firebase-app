@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Mobile App Task</string>
+    <string name="scopic_text">Scopic</string>
+    <string name="sign_in_text">Sign In</string>
+    <string name="email_text">Email</string>
+    <string name="password_text">Password</string>
+    <string name="sign_up_text">Sign Up</string>
+    <string name="have_an_account_sign_in">Have an Account? </string>
+    <string name="welcome_text">Welcome</string>
+    <string name="hi_there_nice_to_see_you_text">Hi there! Nice to see you</string>
+    <string name="list_text">List</string>
+    <string name="log_out_text">Log Out</string>
+</resources>
