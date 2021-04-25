@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.app.mobileapptask.constant.AppConstant
 import com.app.mobileapptask.databinding.ProfileFragmentBinding
 
 class ProfileFragment : Fragment() {
@@ -27,8 +29,11 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.userEmailAddress.text = AppConstant.getUserEmail(requireContext())
+
         binding.logout.setOnClickListener {
             viewModel.logout()
+            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToLoginFragment())
         }
     }
 

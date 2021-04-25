@@ -12,13 +12,34 @@
         android:minHeight="?attr/actionBarSize"
         app:theme="@style/Widget.AppCompat.Toolbar">
 
-        <TextView
-            android:id="@+id/toolbarText"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="@dimen/sp18"
-            android:textColor="@color/black"/>
+            android:orientation="horizontal"
+            android:layout_marginEnd="@dimen/dp8"
+            android:layout_marginStart="@dimen/dp8">
+
+            <TextView
+                android:id="@+id/profileText"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp18"
+                android:gravity="start"
+                android:text="@string/back_text"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/backText"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textAlignment="textEnd"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_text"
+                android:textSize="@dimen/sp18"
+                android:textColor="@color/black"/>
+
+        </LinearLayout>
 
     </androidx.appcompat.widget.Toolbar>
 

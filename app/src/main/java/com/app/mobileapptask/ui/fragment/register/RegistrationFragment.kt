@@ -9,7 +9,9 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.app.mobileapptask.constant.AppConstant
 import com.app.mobileapptask.databinding.RegisterFragmentBinding
+import com.app.mobileapptask.ui.activity.MainActivity
 import com.app.mobileapptask.utils.Status
 import com.app.mobileapptask.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
@@ -81,6 +83,7 @@ class RegistrationFragment: Fragment() {
 
     private fun moveToWelcomeFragment() {
         hideLoader()
+        AppConstant.saveUserEmail(requireContext(), emailAddress = binding.email.text.toString())
         findNavController().navigate(RegistrationFragmentDirections.actionRegistrationFragmentToWelcomeFragment())
     }
 
@@ -103,6 +106,7 @@ class RegistrationFragment: Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        (activity as MainActivity).
         _binding = null
     }
 }

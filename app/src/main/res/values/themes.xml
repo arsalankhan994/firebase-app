@@ -17,7 +17,7 @@
     <style name="AppBaseTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/red</item>
         <item name="colorPrimaryDark">@color/red</item>
-        <item name="colorAccent">@color/gray</item>
+        <item name="colorAccent">@color/red</item>
     </style>
 
 </resources>

@@ -10,6 +10,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.app.mobileapptask.constant.AppConstant
 import com.app.mobileapptask.databinding.LoginFragmentBinding
 import com.app.mobileapptask.utils.Status
 import com.app.mobileapptask.utils.toast
@@ -81,6 +82,7 @@ class LoginFragment : Fragment() {
 
     private fun moveToWelcomeFragment() {
         hideLoader()
+        AppConstant.saveUserEmail(requireContext(), emailAddress = binding.email.text.toString())
         findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
     }
 

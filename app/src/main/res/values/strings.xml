@@ -10,4 +10,7 @@
     <string name="hi_there_nice_to_see_you_text">Hi there! Nice to see you</string>
     <string name="list_text">List</string>
     <string name="log_out_text">Log Out</string>
+    <string name="firebase_option">Firebase Option</string>
+    <string name="back_text">Back</string>
+    <string name="profile_text">Profile</string>
 </resources>

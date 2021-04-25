@@ -47,5 +47,11 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.app.mobileapptask.ui.fragment.profile.ProfileFragment" />
+        android:name="com.app.mobileapptask.ui.fragment.profile.ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

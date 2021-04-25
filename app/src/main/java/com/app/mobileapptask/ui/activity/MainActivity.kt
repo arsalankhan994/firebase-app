@@ -2,6 +2,7 @@ package com.app.mobileapptask.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -29,6 +30,14 @@ class MainActivity : AppCompatActivity() {
         findViewById<Toolbar>(R.id.toolbar)
                 .setupWithNavController(navController, appBarConfiguration)
 
+    }
+
+    fun showToolbar() {
+        binding.toolbarLayout.toolbar.visibility = View.VISIBLE
+    }
+
+    fun hideToolbar() {
+        binding.toolbarLayout.toolbar.visibility = View.GONE
     }
 
     override fun onDestroy() {
