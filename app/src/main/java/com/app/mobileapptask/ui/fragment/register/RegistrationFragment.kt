@@ -5,6 +5,7 @@ import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -45,6 +46,14 @@ class RegistrationFragment: Fragment() {
         binding.signIn.setOnClickListener {
             findNavController().navigate(RegistrationFragmentDirections.actionRegistrationFragmentPopIncludingLoginFragment())
         }
+
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true ) {
+                override fun handleOnBackPressed() {
+                    requireActivity().finish()
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
 
         viewModel.status.observe(viewLifecycleOwner, {
             when (it.status) {

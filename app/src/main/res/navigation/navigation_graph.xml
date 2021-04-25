@@ -13,9 +13,7 @@
             app:popUpTo="@id/welcomeFragment"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_registrationFragment_pop_including_loginFragment"
-            app:popUpToInclusive="false"
-            app:popUpTo="@id/loginFragment"/>
+            android:id="@+id/action_registrationFragment_pop_including_loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -35,7 +33,7 @@
         <action
             android:id="@+id/action_welcomeFragment_to_taskListFragment"
             app:destination="@id/taskListFragment"
-            app:popUpToInclusive="false"
+            app:popUpToInclusive="true"
             app:popUpTo="@id/taskListFragment"/>
     </fragment>
     <fragment
