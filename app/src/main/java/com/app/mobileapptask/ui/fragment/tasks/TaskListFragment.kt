@@ -12,11 +12,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.app.mobileapptask.databinding.TaskListFragmentBinding
 import com.app.mobileapptask.entity.TaskEntity
 import com.app.mobileapptask.listener.OnItemClickListener
-import com.app.mobileapptask.repository.local.TaskDao
 import com.app.mobileapptask.repository.local.TaskRepository
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import kotlin.random.Random
+
 
 @AndroidEntryPoint
 class TaskListFragment : Fragment() {
@@ -29,9 +31,9 @@ class TaskListFragment : Fragment() {
     private lateinit var adapter: TaskAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
         _binding = TaskListFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -42,26 +44,36 @@ class TaskListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val linearLayManager = LinearLayoutManager(
-            requireContext(),
-            LinearLayoutManager.VERTICAL,
-            false
+                requireContext(),
+                LinearLayoutManager.VERTICAL,
+                false
         )
         binding.recyclerView.layoutManager = linearLayManager
         binding.recyclerView.addItemDecoration(DividerItemDecoration(
-            context,
-            DividerItemDecoration.VERTICAL
+                context,
+                DividerItemDecoration.VERTICAL
         ))
 
         // delete task on click
         adapter = TaskAdapter(requireContext(), object : OnItemClickListener {
             override fun onItemClick(item: TaskEntity) {
-                viewModel.deleteTask(taskEntity = item)
+                if (binding.firebaseSwitch.isChecked) {
+                    viewModel.deleteTaskFromFirebase(taskEntity = item)
+                } else {
+                    viewModel.deleteTask(taskEntity = item)
+                }
             }
         })
 
         // add task on fab click
         binding.fabIcon.setOnClickListener {
-            viewModel.addTask(TaskEntity(taskName = "Task   ${Random.nextInt(1, 1000)}"))
+            if (binding.firebaseSwitch.isChecked) {
+                val taskEntity = TaskEntity(taskName = "Task   ${Random.nextInt(1, 1000)}")
+                viewModel.addTaskOnFirebase(taskEntity = taskEntity)
+                viewModel.addTask(taskEntity)
+            } else {
+                viewModel.addTask(TaskEntity(taskName = "Task   ${Random.nextInt(1, 1000)}"))
+            }
         }
 
         binding.recyclerView.adapter = adapter
@@ -75,6 +87,7 @@ class TaskListFragment : Fragment() {
                 (binding.recyclerView.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(positionStart, 0)
             }
         })
+        
     }
 
     override fun onDestroyView() {
