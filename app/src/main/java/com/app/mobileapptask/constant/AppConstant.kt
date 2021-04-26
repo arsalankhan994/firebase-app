@@ -10,6 +10,7 @@ object AppConstant {
     const val DATABASE_NAME = "database"
     const val SHARED_PREF = "shared_pref"
     const val EMAIL_ADDRESS = "email_address"
+    const val USER_ID = "user_id"
 
     fun saveUserEmail(context: Context, emailAddress: String) {
         val editor: Editor = context.getSharedPreferences(SHARED_PREF, MODE_PRIVATE).edit()
@@ -20,5 +21,16 @@ object AppConstant {
     fun getUserEmail(context: Context) : String {
         val prefs: SharedPreferences = context.getSharedPreferences(SHARED_PREF, MODE_PRIVATE)
         return prefs.getString(EMAIL_ADDRESS, "").toString()
+    }
+
+    fun saveUserId(context: Context, id: String) {
+        val editor: Editor = context.getSharedPreferences(SHARED_PREF, MODE_PRIVATE).edit()
+        editor.putString(USER_ID, id)
+        editor.apply()
+    }
+
+    fun getUserId(context: Context) : String {
+        val prefs: SharedPreferences = context.getSharedPreferences(SHARED_PREF, MODE_PRIVATE)
+        return prefs.getString(USER_ID, "").toString()
     }
 }

@@ -106,7 +106,6 @@ class RegistrationFragment: Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        (activity as MainActivity).
         _binding = null
     }
 }
