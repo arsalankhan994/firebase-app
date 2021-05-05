@@ -13,11 +13,8 @@ import com.app.mobileapptask.databinding.TaskListFragmentBinding
 import com.app.mobileapptask.entity.TaskEntity
 import com.app.mobileapptask.listener.OnItemClickListener
 import com.app.mobileapptask.repository.local.TaskRepository
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
-import kotlin.random.Random
 
 
 @AndroidEntryPoint
@@ -44,11 +41,10 @@ class TaskListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val linearLayManager = LinearLayoutManager(
-                requireContext(),
-                LinearLayoutManager.VERTICAL,
-                false
+                requireContext(), LinearLayoutManager.VERTICAL, false
         )
         binding.recyclerView.layoutManager = linearLayManager
+
         binding.recyclerView.addItemDecoration(DividerItemDecoration(
                 context,
                 DividerItemDecoration.VERTICAL
@@ -57,28 +53,24 @@ class TaskListFragment : Fragment() {
         // delete task on click
         adapter = TaskAdapter(requireContext(), object : OnItemClickListener {
             override fun onItemClick(item: TaskEntity) {
-                if (binding.firebaseSwitch.isChecked) {
-                    viewModel.deleteTaskFromFirebase(taskEntity = item)
-                } else {
-                    viewModel.deleteTask(taskEntity = item)
-                }
+                viewModel.updateTask(item)
             }
         })
 
         // add task on fab click
         binding.fabIcon.setOnClickListener {
             if (binding.firebaseSwitch.isChecked) {
-                val taskEntity = TaskEntity(taskName = "Task   ${Random.nextInt(1, 1000)}")
+                val taskEntity = TaskEntity(taskName = "Task")
                 viewModel.addTaskOnFirebase(taskEntity = taskEntity)
                 viewModel.addTask(taskEntity)
             } else {
-                viewModel.addTask(TaskEntity(taskName = "Task   ${Random.nextInt(1, 1000)}"))
+                viewModel.addTask(TaskEntity(taskName = "Task"))
             }
         }
 
         binding.recyclerView.adapter = adapter
 
-        taskRepository.getTasks().observe(viewLifecycleOwner, {
+        viewModel.getTaskList().observe(viewLifecycleOwner, {
             adapter.submitList(it)
         })
 

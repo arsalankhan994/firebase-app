@@ -1,6 +1,7 @@
 package com.app.mobileapptask.repository.local
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.app.mobileapptask.entity.TaskEntity
 import javax.inject.Inject
 
@@ -9,6 +10,10 @@ class TaskRepository @Inject constructor(
 
     suspend fun insertTask(taskEntity: TaskEntity) {
         taskDao.insertTask(taskEntity)
+    }
+
+    suspend fun updateTask(taskEntity: TaskEntity) {
+        taskDao.updateTask(taskEntity)
     }
 
     suspend fun deleteTask(taskEntity: TaskEntity) {

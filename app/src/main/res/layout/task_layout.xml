@@ -2,14 +2,45 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/dp16">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dp16"
+        android:text="Task Name"
         android:id="@+id/taskName"
         android:textColor="@color/gray"
         android:textSize="@dimen/sp16" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Task Status"
+        android:layout_marginTop="@dimen/dp5"
+        android:id="@+id/taskStatus"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/sp16" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/accept"
+        android:text="Accept"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp5"
+        android:background="@color/white"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/reject"
+        android:text="Reject"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp5"
+        android:background="@color/white"/>
 
 </LinearLayout>

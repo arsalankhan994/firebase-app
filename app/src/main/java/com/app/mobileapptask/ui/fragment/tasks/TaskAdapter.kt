@@ -26,9 +26,13 @@ class TaskAdapter(
         return TaskViewHolder.create(context, parent, listener)
     }
 
+    override fun submitList(list: List<TaskEntity>?) {
+        super.submitList(list?.let { ArrayList(it) })
+    }
+
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         getItem(position)?.let {
-            holder.bind(it)
+            holder.bind(it, position, this)
         }
     }
 }

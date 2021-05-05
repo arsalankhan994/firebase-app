@@ -1,5 +1,6 @@
 package com.app.mobileapptask.ui.fragment.tasks
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.app.mobileapptask.entity.TaskEntity
@@ -18,6 +19,8 @@ class TaskListViewModel @Inject constructor(
         private val auth: FirebaseAuth
 ) : ViewModel() {
 
+    private var taskList : LiveData<List<TaskEntity>> = taskRepository.getTasks()
+
     fun deleteTask(taskEntity: TaskEntity) {
         viewModelScope.launch(Dispatchers.IO) {
             taskRepository.deleteTask(taskEntity)
@@ -27,6 +30,12 @@ class TaskListViewModel @Inject constructor(
     fun addTask(taskEntity: TaskEntity) {
         viewModelScope.launch(Dispatchers.IO) {
             taskRepository.insertTask(taskEntity)
+        }
+    }
+
+    fun updateTask(taskEntity: TaskEntity) {
+        viewModelScope.launch(Dispatchers.IO) {
+            taskRepository.updateTask(taskEntity)
         }
     }
 
@@ -46,6 +55,10 @@ class TaskListViewModel @Inject constructor(
             val dbRef = database.getReference("TaskList")
             dbRef.child(userId).child(taskEntity.taskName.replace("Task", "").trim()).removeValue()
         }
+    }
+
+    fun getTaskList(): LiveData<List<TaskEntity>> {
+        return taskList
     }
 
 }

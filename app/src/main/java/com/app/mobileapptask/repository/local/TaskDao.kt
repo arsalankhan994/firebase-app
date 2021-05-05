@@ -1,6 +1,7 @@
 package com.app.mobileapptask.repository.local
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.*
 import com.app.mobileapptask.entity.TaskEntity
 
@@ -15,6 +16,9 @@ interface TaskDao {
 
     @Insert
     suspend fun insertTask(taskEntity: TaskEntity)
+
+    @Update
+    suspend fun updateTask(taskEntity: TaskEntity)
 
     @Delete
     suspend fun deleteTask(taskEntity: TaskEntity)
